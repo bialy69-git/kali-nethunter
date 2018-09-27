@@ -1,3 +1,24 @@
+### This is a forked version from Official Kali Nethuner repo, some modification are made since Official Image are not updated for a long time. The purpose of this modification is to ensure compatibility with [Magisk Kali Nethunter](https://github.com/atarii/Magisk_Kali_Nethunter).
+
+## How to use:
+
+> git clone git://github.com/exalab999/kali-nethunter
+> cd nethunter-fs
+> sudo ./build.sh --full --arch armhf
+
+## IMPORTANT:
+
+1. This script is currently configure to build armhf image only, other architecture are not tested but it may work too.
+
+2. VNC function does not work, trying to start VNC Server will result in a device force reboot.
+
+3. The script include most of the tools I needed, also including a terminal based browser and terminal based email client since VNC is not working.
+
+4. Apt problem: running apt-get update or apt update will result in error.
+
+5. I currently don't have time to solve these issue, if you found a solution please open an issue, thanks.
+
+
 # NetHunter - Mobile Penetration Testing Platform
 ![Kali NetHunter](https://raw.githubusercontent.com/offensive-security/kali-nethunter/master/images/nethunter-git-logo.png)
 ## A project by Offensive Security
