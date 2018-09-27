@@ -1,4 +1,6 @@
-### This is a forked version from Official Kali Nethuner repo, some modification are made since Official Image are not updated for a long time. The purpose of this modification is to ensure compatibility with [Magisk Kali Nethunter](https://github.com/atarii/Magisk_Kali_Nethunter).
+### Note:
+
+This is a forked version from Official Kali Nethuner repo, some modification are made since Official Image are not updated for a long time. The purpose of this modification is to ensure compatibility with [Magisk Kali Nethunter](https://github.com/atarii/Magisk_Kali_Nethunter).
 
 ## How to use:
 
