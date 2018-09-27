@@ -28,7 +28,7 @@ apt-get update
 
 debconf-set-selections /debconf.set
 rm -f /debconf.set
-apt-get -y install locales-all git-core binutils ca-certificates initramfs-tools locales console-common less nano git
+apt-get -y install locales-all binutils ca-certificates initramfs-tools locales console-common less nano git
 echo "root:toor" | chpasswd
 
 echo "I: Installing packages with apt-get: $packages"
@@ -43,12 +43,11 @@ EOF
 if [ "$build_size" = full ]; then
 	# We should run git clone outside chroot because it has issues with machine-code translation
 	git clone https://github.com/Proxmark/proxmark3.git "$rootfs/opt/proxmark3"
-	git clone https://github.com/adaptivethreat/Empire.git "$rootfs/opt/Empire"
 
 	cat << EOF >> "$rootfs/third-stage"
 
 # Enable PHP in Apache
-a2enmod php7.0
+a2enmod php7.3
 
 # Enable /var/www/html as default, disable mana unless we need it
 a2dissite 000-mana-toolkit.conf
@@ -58,10 +57,6 @@ if cd /opt/proxmark3; then
 	make
 fi
 
-if cd /opt/Empire/setup; then
-	chmod +x install.sh
-	printf "\n" | ./install.sh
-fi
 EOF
 	# End of third-stage script append
 fi
