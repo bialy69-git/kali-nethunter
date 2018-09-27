@@ -4,7 +4,7 @@
 
 > git clone git://github.com/exalab999/kali-nethunter
 
-> cd nethunter-fs
+> cd kali-nethunter/nethunter-fs
 
 > sudo ./build.sh --full --arch armhf
 
