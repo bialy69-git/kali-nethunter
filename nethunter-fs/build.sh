@@ -66,9 +66,9 @@ done
 [ "$build_arch" ] || build_arch=armhf
 
 rootfs="kali-$build_arch"
-build_output="output/kalifs-$build_arch-$build_size"
+build_output="output/$build_arch/kalifs-$build_size"
 
-mkdir -p output
+mkdir -p output/$build_arch
 
 # Capture all output from here on in kalifs-*.log
 exec &> >(tee -a "${build_output}.log")
@@ -79,7 +79,7 @@ sleep 1
 
 # Dependency checks
 dep_check() {
-	build_deps="git-core gnupg flex bison gperf libesd0-dev build-essential binfmt-support
+	build_deps="git gnupg flex bison gperf libesd0-dev build-essential binfmt-support
 		zip curl libncurses5-dev zlib1g-dev libncurses5-dev gcc-multilib g++-multilib
 		parted kpartx pixz qemu-user qemu-user-static abootimg cgpt vboot-kernel-utils
 		vboot-utils bc lzma lzop xz-utils automake autoconf m4 dosfstools rsync u-boot-tools
@@ -148,11 +148,13 @@ pkg_minimal="openssh-server kali-defaults kali-archive-keyring
 	apt-transport-https ntpdate usbutils pciutils"
 
 # DEFAULT PACKAGES FULL INSTALL
-pkg_full="kali-linux-nethunter mana-toolkit exploitdb lua-sql-sqlite3 msfpc
-	exe2hexbat bettercap libapache2-mod-php7.0 libreadline6-dev
-	libncurses5-dev libnewlib-arm-none-eabi binutils-arm-none-eabi
-	gcc-arm-none-eabi autoconf libtool make gcc-6 g++-6
-	libxml2-dev zlib1g-dev libncurses5-dev"
+pkg_full="kali-linux-nethunter john hydra nikto uniscan yersinia set apktool netcat mana-toolkit exploitdb lua-sql-sqlite3 msfpc
+	exe2hexbat bettercap libapache2-mod-php7.3 libreadline-dev aptitude tor proxychains
+	libnewlib-arm-none-eabi binutils-arm-none-eabi gcc-arm-none-eabi neofetch whois
+	build-essential libncurses-dev libncurses5-dev automake autoconf libtool
+	libxml2-dev zlib1g-dev transmission-cli transmission-daemon ufw lynx mutt gdebi
+	bleachbit htop aria2 curl git cmake cmake-extras cmake-curses-gui tmux vim emacs gnupg2 mc 
+	p7zip-full xz-utils python-pip python3-pip cython cython3 pkg-config"
 
 # ARCH SPECIFIC PACKAGES
 pkg_minimal_armhf="abootimg cgpt fake-hwclock vboot-utils vboot-kernel-utils nethunter-utils"
@@ -250,6 +252,6 @@ sha512sum "${build_output}.tar.xz" | sed "s|output/||" > "${build_output}.sha512
 echo "[+] Finished!  Check output folder for chroot."
 
 # Extract on device
-# xz -dc /sdcard/kalifs.tar.xz | tar xvf - -C /data/local/nhsystem
+# xz -dc /sdcard/kalifs-*.tar.xz | tar xvf - -C /data/local/nhsystem
 # or
-# tar xJvf /sdcard/kalifs.tar.xz -C /data/local/nhsystem
+# tar xJvf /sdcard/kalifs-*.tar.xz -C /data/local/nhsystem
